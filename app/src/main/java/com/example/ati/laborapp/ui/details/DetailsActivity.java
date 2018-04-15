@@ -7,10 +7,11 @@ import android.support.v7.widget.Toolbar;
 
 import com.example.ati.laborapp.CocktailsApplication;
 import com.example.ati.laborapp.R;
+import com.example.ati.laborapp.model.Cocktail;
 
 import javax.inject.Inject;
 
-public class DetailsActivity extends AppCompatActivity {
+public class DetailsActivity extends AppCompatActivity implements DetailsScreen{
     @Inject
     DetailsPresenter detailsPresenter;
 
@@ -23,6 +24,11 @@ public class DetailsActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+    }
+
+    @Override
+    public void showDetails(Cocktail cocktail) {
 
     }
 }

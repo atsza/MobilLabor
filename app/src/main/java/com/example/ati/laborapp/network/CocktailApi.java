@@ -7,6 +7,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface CocktailApi {
-    @GET("Todos")
-    Call<Cocktail> getTodos(@Query("name") String name);
+    @GET("Cocktails")
+    Call<Cocktail> getCocktails(@Query("name") String name);
 }

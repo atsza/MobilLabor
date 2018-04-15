@@ -13,7 +13,7 @@ public class MainPresenter extends Presenter<MainScreen>{
         super.detachScreen();
     }
 
-    public void showArtistsSearchList(String searchTerm) {
+    public void ShowCocktailsList(String searchTerm) {
         screen.showCocktails(searchTerm);
     }
 }
