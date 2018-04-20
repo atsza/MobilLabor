@@ -20,7 +20,7 @@ public class CocktailsInteractor {
 
     public void getCocktails(String searchString) {
 
-        Call<Cocktail> cocktailCall = cocktailApi.getCocktails(searchString);
+        //Call<Cocktail> cocktailCall = cocktailApi.getCocktails(searchString);
         GetCocktailsEvent event = new GetCocktailsEvent();
         try{
             //TODO
