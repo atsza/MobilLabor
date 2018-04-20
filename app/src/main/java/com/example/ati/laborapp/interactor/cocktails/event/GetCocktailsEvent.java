@@ -9,7 +9,6 @@ public class GetCocktailsEvent {
     private List<Cocktail> cocktails;
     private Throwable throwable;
 
-    //<editor-fold desc="Constructors|Getters|Setters">
 
     public GetCocktailsEvent() {
     }
@@ -44,5 +43,5 @@ public class GetCocktailsEvent {
         this.throwable = throwable;
     }
 
-    //</editor-fold>
+
 }

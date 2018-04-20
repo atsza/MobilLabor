@@ -3,10 +3,10 @@ package com.example.ati.laborapp.model;
 import java.util.Objects;
 
 import com.google.gson.annotations.SerializedName;
+import com.orm.dsl.Table;
 
 
-
-
+@Table
 public class Cocktail   {
   
   @SerializedName("idDrink")

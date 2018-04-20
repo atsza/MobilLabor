@@ -3,7 +3,9 @@ package com.example.ati.laborapp.interactor.cocktails;
 import com.example.ati.laborapp.CocktailsApplication;
 import com.example.ati.laborapp.interactor.cocktails.event.GetCocktailsEvent;
 import com.example.ati.laborapp.model.Cocktail;
+import com.example.ati.laborapp.model.Cocktails;
 import com.example.ati.laborapp.network.CocktailApi;
+import com.example.ati.laborapp.network.CocktaillistApi;
 
 import javax.inject.Inject;
 
@@ -12,7 +14,7 @@ import retrofit2.Call;
 public class CocktailsInteractor {
 
     @Inject
-    CocktailApi cocktailApi;
+    CocktaillistApi cocktaillistApi;
 
     public CocktailsInteractor(){
        CocktailsApplication.injector.inject(this);
@@ -20,7 +22,7 @@ public class CocktailsInteractor {
 
     public void getCocktails(String searchString) {
 
-        //Call<Cocktail> cocktailCall = cocktailApi.getCocktails(searchString);
+        Call<Cocktails> cocktailCall = cocktaillistApi.getCocktails(searchString);
         GetCocktailsEvent event = new GetCocktailsEvent();
         try{
             //TODO
