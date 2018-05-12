@@ -7,7 +7,7 @@ import com.example.ati.laborapp.interactor.cocktails.CocktailsInteractor;
 @Module
 public class InteractorModule {
     @Provides
-    public CocktailsInteractor provideArtistsInteractor() {
+    public CocktailsInteractor provideCocktailsInteractor() {
         return new CocktailsInteractor();
     }
 }

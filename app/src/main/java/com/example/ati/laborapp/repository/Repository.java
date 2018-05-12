@@ -14,11 +14,11 @@ public interface Repository {
 
     List<Cocktail> getCocktails();
 
-    void saveCocktail(Cocktail todo);
+    void saveCocktail(Cocktail cocktail);
 
-    void updateCocktail(List<Cocktail> todos);
+    void updateCocktail(List<Cocktail> cocktails);
 
-    void removeCocktail(Cocktail todo);
+    void removeCocktail(Cocktail cocktail);
 
-    boolean isInDB(Cocktail todo);
+    boolean isInDB(Cocktail cocktail);
 }

@@ -7,6 +7,8 @@ import com.example.ati.laborapp.model.Cocktails;
 import com.example.ati.laborapp.network.CocktailApi;
 import com.example.ati.laborapp.network.CocktaillistApi;
 
+import java.io.IOException;
+
 import javax.inject.Inject;
 
 import retrofit2.Call;
@@ -16,19 +18,14 @@ public class CocktailsInteractor {
     @Inject
     CocktaillistApi cocktaillistApi;
 
+
     public CocktailsInteractor(){
        CocktailsApplication.injector.inject(this);
     }
 
-    public void getCocktails(String searchString) {
+    public Cocktails getCocktails(String searchString) throws IOException {
 
-        Call<Cocktails> cocktailCall = cocktaillistApi.getCocktails(searchString);
-        GetCocktailsEvent event = new GetCocktailsEvent();
-        try{
-            //TODO
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        return this.cocktaillistApi.getCocktails(searchString).execute().body();
     }
 
 }
