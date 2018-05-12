@@ -15,10 +15,13 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+
 import com.example.ati.laborapp.CocktailsApplication;
 import com.example.ati.laborapp.R;
 import com.example.ati.laborapp.model.Cocktail;
 import com.example.ati.laborapp.ui.details.DetailsActivity;
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 
 import java.util.ArrayList;
 
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
     protected void onCreate(Bundle savedInstanceState) {
         final Context context = this;
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
         //CocktailsApplication.injector.inject(this);
@@ -89,6 +93,10 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
 
     }
 
+
+    public void forceCrash(View view) {
+        throw new RuntimeException("This is a crash");
+    }
 
     @Override
     protected void onStart() {
