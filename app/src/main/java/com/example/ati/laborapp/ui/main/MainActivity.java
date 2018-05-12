@@ -17,10 +17,14 @@ import android.widget.Toast;
 
 
 import com.example.ati.laborapp.CocktailsApplication;
+import com.example.ati.laborapp.CocktailsApplicationComponent;
 import com.example.ati.laborapp.R;
 import com.example.ati.laborapp.model.Cocktail;
 import com.example.ati.laborapp.ui.details.DetailsActivity;
 import com.crashlytics.android.Crashlytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import io.fabric.sdk.android.Fabric;
 
 import java.util.ArrayList;
@@ -32,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
     //@Inject
     //MainPresenter mainPresenter;
 
+    private Tracker mTracker;
     private ListView listView;
     ArrayAdapter<String> adapter;
     ArrayList<Cocktail> cocktails;
@@ -48,12 +53,19 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        CocktailsApplication application = (CocktailsApplication) getApplication();
+        mTracker = application.getDefaultTracker();
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                mTracker.send(new HitBuilders.EventBuilder()
+                        .setCategory("Action")
+                        .setAction("Add")
+                        .build());
             }
         });
 
@@ -86,6 +98,10 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
                 int itemPos = position;
                 String value = (String) listView.getItemAtPosition(position);
 
+                mTracker.send(new HitBuilders.EventBuilder()
+                        .setCategory("Action")
+                        .setAction("Detail")
+                        .build());
                 Intent detailsIntent = new Intent(context, DetailsActivity.class);
                 startActivity(detailsIntent);
             }
