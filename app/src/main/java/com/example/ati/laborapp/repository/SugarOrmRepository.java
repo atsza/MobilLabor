@@ -33,6 +33,10 @@ public class SugarOrmRepository implements Repository {
     }
 
     @Override
+    public void saveAllCocktails(List<Cocktail> meals) {
+        SugarRecord.saveInTx(meals);
+    }
+    @Override
     public void updateCocktail(List<Cocktail> cocktails) {
         List<Cocktail> cocktailList = getCocktails();
         List<Cocktail> toUpdate = new ArrayList<>(cocktailList.size());
@@ -49,6 +53,11 @@ public class SugarOrmRepository implements Repository {
     @Override
     public void removeCocktail(Cocktail cocktail) {
         SugarRecord.deleteInTx(cocktail);
+    }
+
+    @Override
+    public void removeAll(){
+        SugarRecord.deleteAll(Cocktail.class);
     }
 
     @Override

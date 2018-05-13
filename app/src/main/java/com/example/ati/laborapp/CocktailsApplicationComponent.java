@@ -2,7 +2,9 @@ package com.example.ati.laborapp;
 
 import com.example.ati.laborapp.interactor.InteractorModule;
 import com.example.ati.laborapp.interactor.cocktails.CocktailsInteractor;
+import com.example.ati.laborapp.interactor.cocktails.RepositoryInteractor;
 import com.example.ati.laborapp.network.NetworkModule;
+import com.example.ati.laborapp.repository.Repository;
 import com.example.ati.laborapp.ui.UIModule;
 import com.example.ati.laborapp.ui.details.DetailsActivity;
 import com.example.ati.laborapp.ui.details.DetailsPresenter;
@@ -21,6 +23,8 @@ public interface CocktailsApplicationComponent {
     void inject(DetailsActivity detailsActivity);
 
     void inject(CocktailsInteractor cocktailsInteractor);
+
+    void inject(RepositoryInteractor repositoryInteractor);
 
     void inject(MainPresenter mainPresenter);
 

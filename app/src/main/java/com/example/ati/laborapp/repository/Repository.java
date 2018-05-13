@@ -2,9 +2,13 @@ package com.example.ati.laborapp.repository;
 
 import android.content.Context;
 
+
 import com.example.ati.laborapp.model.Cocktail;
 
 import java.util.List;
+
+import dagger.Provides;
+
 
 public interface Repository {
 
@@ -14,11 +18,15 @@ public interface Repository {
 
     List<Cocktail> getCocktails();
 
-    void saveCocktail(Cocktail todo);
+    void saveCocktail(Cocktail cocktail);
 
-    void updateCocktail(List<Cocktail> todos);
+    void saveAllCocktails(List<Cocktail> cocktails);
 
-    void removeCocktail(Cocktail todo);
+    void updateCocktail(List<Cocktail> cocktails);
 
-    boolean isInDB(Cocktail todo);
+    void removeCocktail(Cocktail cocktail);
+
+    void removeAll();
+
+    boolean isInDB(Cocktail cocktail);
 }

@@ -3,6 +3,6 @@ package com.example.ati.laborapp.ui.details;
 import com.example.ati.laborapp.model.Cocktail;
 
 public interface DetailsScreen {
-    void showDetails(Cocktail cocktail);
+    void showDetails(String cocktail);
 
 }

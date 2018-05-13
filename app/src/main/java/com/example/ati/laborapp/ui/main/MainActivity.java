@@ -1,15 +1,25 @@
 package com.example.ati.laborapp.ui.main;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import com.example.ati.laborapp.CocktailsApplication;
 import com.example.ati.laborapp.R;
+import com.example.ati.laborapp.model.Cocktail;
+import com.example.ati.laborapp.ui.details.DetailsActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -17,6 +27,10 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
 
     @Inject
     MainPresenter mainPresenter;
+
+    private ListView listView;
+    ArrayAdapter<String> adapter;
+    ArrayList<Cocktail> cocktails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +50,14 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
                         .setAction("Action", null).show();
             }
         });
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        mainPresenter.attachScreen(this);
+        mainPresenter.attachScreen(this);String search= "A";
+        mainPresenter.getCocktailsFromApi(search);
     }
 
     @Override
@@ -52,7 +68,46 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
 
 
     @Override
-    public void showCocktails(String searchTerm) {
+    public void showCocktails(List<Cocktail> cocktails) {
 
+        final Context context = this;
+        listView = (ListView) findViewById(R.id.cocktail_list);
+
+        cocktails = new ArrayList<Cocktail>();
+
+        for (Cocktail cocktail : cocktails){
+            cocktails.add(cocktail);
+        }
+
+
+        String[] listItems = new String[cocktails.size()];
+
+        for(int i = 0; i < cocktails.size(); i++){
+            Cocktail cocktail = cocktails.get(i);
+            listItems[i] = cocktail.getStrDrink();
+        }
+
+        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems);
+        listView.setAdapter(adapter);
+
+        final List<Cocktail> finalCocktails = cocktails;
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int itemPos = position;
+                String value = (String) listView.getItemAtPosition(position);
+                Cocktail c = new Cocktail();
+
+                for (Cocktail cocktail : finalCocktails){
+                    if(cocktail.getStrDrink().equals(value)){
+                        c=cocktail;
+                    }
+                }
+
+                Intent detailsIntent = new Intent(context, DetailsActivity.class);
+                detailsIntent.putExtra("DATA", c.getStrDrinkThumb());
+                startActivity(detailsIntent);
+            }
+        });
     }
 }

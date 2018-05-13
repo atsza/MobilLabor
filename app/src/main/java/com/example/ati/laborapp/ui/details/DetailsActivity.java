@@ -3,6 +3,7 @@ package com.example.ati.laborapp.ui.details;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 
 
 import com.example.ati.laborapp.CocktailsApplication;
@@ -28,7 +29,16 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen{
     }
 
     @Override
-    public void showDetails(Cocktail cocktail) {
+    public void onStart() {
 
+        super.onStart();
+        detailsPresenter.attachScreen(this);
+        detailsPresenter.ShowCocktailDetails(getIntent().getStringExtra("DATA"));
+    }
+
+    @Override
+    public void showDetails(String detail) {
+        TextView detailsTextView = (TextView)findViewById(R.id.cocktail_details);
+        detailsTextView.setText(detail);
     }
 }

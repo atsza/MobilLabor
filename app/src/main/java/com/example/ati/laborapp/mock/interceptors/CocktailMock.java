@@ -3,7 +3,6 @@ package com.example.ati.laborapp.mock.interceptors;
 import android.net.Uri;
 
 import com.example.ati.laborapp.network.NetworkConfig;
-import com.example.ati.laborapp.repository.MemoryRepository;
 
 import okhttp3.Headers;
 import okhttp3.Request;
@@ -25,8 +24,8 @@ public class CocktailMock {
             responseString = "";
             responseCode = 200;
         }else if (uri.getPath().equals(NetworkConfig.ENDPOINT_ADDRESS) && request.method().equals("Get")) {
-            MemoryRepository memoryRepository = new MemoryRepository();
-            memoryRepository.open(null);
+            //MemoryRepository memoryRepository = new MemoryRepository();
+            //memoryRepository.open(null);
             //responseString = GsonHelper.getGson().toJson(memoryRepository.getCocktails());
             responseString = "";
             responseCode = 200;

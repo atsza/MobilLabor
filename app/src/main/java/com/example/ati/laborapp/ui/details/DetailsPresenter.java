@@ -14,7 +14,7 @@ public class DetailsPresenter extends Presenter<DetailsScreen> {
         super.detachScreen();
     }
 
-    public void ShowCocktailDetails(Cocktail searchTerm) {
-        screen.showDetails(searchTerm);
+    public void ShowCocktailDetails(String detail) {
+        screen.showDetails(detail);
     }
 }
