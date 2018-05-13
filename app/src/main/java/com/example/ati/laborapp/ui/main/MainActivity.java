@@ -44,27 +44,31 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         listView = (ListView) findViewById(R.id.cocktail_list);
 
         cocktails = new ArrayList<Cocktail>();
 
         Cocktail c1 = new Cocktail();
-        c1.setStrDrink("Cocktail");
+        c1.setStrDrink("Miami Vice");
 
         Cocktail c2 = new Cocktail();
-        c2.setStrDrink("Non alcoholic Cocktail");
+        c2.setStrDrink("Thai Iced Tea");
+
+        Cocktail c3 = new Cocktail();
+        c3.setStrDrink("Spiced Peach Punch");
+        Cocktail c4 = new Cocktail();
+        c4.setStrDrink("Radioactive Long Island Iced Tea");
+        Cocktail c5 = new Cocktail();
+        c5.setStrDrink("57 Chevy with a White License Plat");
+
 
         cocktails.add(c1);
         cocktails.add(c2);
+        cocktails.add(c3);
+        cocktails.add(c4);
+        cocktails.add(c5);
 
         String[] listItems = new String[cocktails.size()];
 
@@ -84,6 +88,31 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
 
                 Intent detailsIntent = new Intent(context, DetailsActivity.class);
                 startActivity(detailsIntent);
+            }
+        });
+
+        /*listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int arg2, long arg3) {
+
+                cocktails.remove(arg2);//where arg2 is position of item you click
+                adapter.notifyDataSetChanged();
+
+                return false;
+            }
+        });*/
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Item added", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                Cocktail c = new Cocktail();
+                c.setStrDrink("New Cocktail");
+                cocktails.add(c);
+                adapter.notifyDataSetChanged();
             }
         });
 
